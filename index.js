@@ -9,10 +9,12 @@ var inventory = require("./inventory.js")
 // variables
 var suits = ["Heart", "Spades", "Clubs", "Diamonds"];
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+var counter = 0
 
-
+// function that will start our game
 function playGame() {
 
+    // prompt user if they want to play a game
     inquirer.prompt([
         // pass questions here
         {
@@ -23,11 +25,16 @@ function playGame() {
             default: 0
         }
     ]).then(function (answer) {
-        // Check if user wnats to play game
+        // Check if user wants to play game
         if (answer.gamechoice === "Yes") {
-            let Deck1 = new Deck(suits, values)
+            // make a new deck for constructor
+            var Deck1 = new Deck(suits, values)
+            // call the reset function put card into deck
             Deck1.reset()
+            // call function to shuffle deck
             Deck1.shuffle()
+
+            // prompt user to choice a random number for his card and computers card
             inquirer.prompt([
                 {
                     type: "input",
@@ -53,7 +60,10 @@ function playGame() {
                 }
 
             ]).then(function (answers) {
+                // call function to compare card and see who won
                 Deck1.cardChosen(answers.usercard, answers.compcard)
+
+                // ask user if they want to play again
                 inquirer.prompt([
                     {
                         type: "list",
@@ -63,6 +73,8 @@ function playGame() {
                         default: 0
                     }
                 ]).then(function (answers) {
+
+                    // if yes then recall play game function if no exit
                     if (answers.playAgain === "Yes") {
                         playGame()
                     } else {

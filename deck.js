@@ -12,28 +12,36 @@ function Deck(suits, values) {
                 this.deck.push(`${values[value]} of ${suits[suit]}`);
             }
         }
-        console.log(this.deck.join("\n"))
+        // console.log(this.deck
 
     }
     this.shuffle = function () {
-        console.log("shuffle")
+        // variable just for easier comprehension
         var deck = this.deck
+        // Dont really know what this does got it from example
         let m = deck.length, i;
 
+        // shuffles the deck
         while (m) {
             i = Math.floor(Math.random() * m--);
 
             [deck[m], deck[i]] = [deck[i], deck[m]];
         }
 
-        console.log(this.deck)
+        // console.log(this.deck)
     }
+
     this.cardChosen = function (userNum, compNum) {
+
+        // two variables that grag the card values
         var userCard = this.deck[userNum]
         var compCard = this.deck[compNum]
+
+        // logging to user to see who got what card
         console.log("Your card is " + userCard);
         console.log("Your card is " + compCard);
 
+        // compare integers and log corresponding result
         if (parseInt(userCard[0]) > parseInt(compCard[0])) {
             console.log("You win")
         } else if (parseInt(userCard[0]) < parseInt(compCard[0])) {
@@ -46,5 +54,5 @@ function Deck(suits, values) {
     }
 }
 
-
+// export the Deck object
 module.exports = Deck;
