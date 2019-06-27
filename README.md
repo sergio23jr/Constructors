@@ -1,7 +1,7 @@
 # Constructors
 
 start off by making deck object 
-'''
+```
 function Deck(suits, values) {
     this.deck = []
     this.reset = function () {
@@ -56,4 +56,4 @@ function Deck(suits, values) {
     }
 }
 
-'''
+```
